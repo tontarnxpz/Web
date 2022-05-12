@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("background2.jpg");
+    font-family: 'Fredoka One', cursive;
+}
+
+.nav ul{
+    list-style: none;
+    background-image: url("background.jpg");
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav li{
+    font-size: 40px;
+    text-align: left;
+    line-height: 40px;
+    background: rgb(240, 209, 255);
+}
+
+.nav a {
+    text-decoration: none;
+    color: rgb(31, 31, 31);
+    display: block;
+    padding-left: 12px;
+    border-bottom: 1px solid #888;
+    transition: .3s;
+}
+
+.nav a:hover{
+    background-color: rgb(146, 146, 250);
+}
+
+.nav li li{
+    font-size: 15px;
+    background-color: #f9f9f9;
+}
+
+@media screen and (min-width: 650px) {
+    .nav li{
+        width: 200px;
+        border-bottom: none;
+        height: 60px;
+        line-height: 60px;
+        font-size: 25px;
+        display: inline-block;
+        margin-right: -4px;
+        border-style: solid;
+    }
+
+    .nav a{
+        border-bottom: none;
+    }
+
+    .nav > ul > li {
+        text-align: center;
+    }
+
+    .nav > ul > li > a {
+        padding-left: 0;
+    }
+
+    .nav li ul{
+        position: absolute;
+        display: none;
+        width: inherit;
+    }
+
+    .nav li:hover ul{
+        display: block;
+    }
+
+    .nav li ul li {
+        display: block;
+    }
+
+    
+
+}
+
+.nav2 {
+    position: fixed;
+    bottom: 0 ;
+    width: 100%;
+}
+
+.nav2 ul{
+    list-style: none;
+    background-image: url("background.jpg");
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav2 li{
+    font-size: 10px;
+    text-align: center;
+    line-height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav2 a {
+    text-decoration: none;
+    color: rgb(31, 31, 31);
+    display: block;
+    padding-left: 12px;
+    border-bottom: 1px solid #888;
+}
+
+.homebutton{
+    margin-left: 97%;
+}
+
+.homebutton:hover{
+    transform: scale(1.05);
+}
+
+.howtoplay {
+    display: flex;
+    justify-content: center;
+}

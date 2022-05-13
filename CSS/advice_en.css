@@ -5,12 +5,22 @@ body {
     font-family: 'Fredoka One', cursive;
 }
 
+.nav{
+    position: fixed;
+    width: 100%;
+    top : 0;
+}
+
 .nav ul{
     list-style: none;
     background-image: url("background.jpg");
     text-align: center;
     padding: 0;
     margin: 0;
+}
+
+.nav ul li:hover{
+    background-color: rgb(146, 146, 250);
 }
 
 .nav li{
@@ -27,10 +37,6 @@ body {
     padding-left: 12px;
     border-bottom: 1px solid #888;
     transition: .3s;
-}
-
-.nav a:hover{
-    background-color: rgb(146, 146, 250);
 }
 
 .nav li li{
@@ -75,13 +81,9 @@ body {
     .nav li ul li {
         display: block;
     }
-
-    
-
 }
 
 .nav2 {
-    position: fixed;
     bottom: 0 ;
     width: 100%;
 }
@@ -111,7 +113,10 @@ body {
 }
 
 .homebutton{
-    margin-left: 97%;
+    margin-left: 95%;
+    width: 5%;
+    display: inline-block;
+    line-height: 60px;
 }
 
 .homebutton:hover{
@@ -121,4 +126,11 @@ body {
 .howtoplay {
     display: flex;
     justify-content: center;
+    margin-top: 100px;
+}
+
+.pic{
+    margin-top: 50px;
+    display: flex;
+    margin-left: 15%;
 }

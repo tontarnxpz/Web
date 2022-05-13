@@ -34,7 +34,7 @@ const ifNotLoggedin = (req,res,next) => {
 
 const ifLoggedin = (req,res,next) => {
     if(req.session.isLoggedIn){
-        return res.redirect('/');
+        return res.redirect('/home_en');
     }
     next();
 }
@@ -42,7 +42,7 @@ const ifLoggedin = (req,res,next) => {
 app.get('/',ifNotLoggedin,(req,res,next) => {
     locate.execute("SELECT `name` FROM `users` WHERE `id` = ?",[req.session.userID])
     .then(([rows]) => {
-        res.render('/',{
+        res.render('home_en',{
             name:rows[0].name
         })
     })
@@ -73,7 +73,7 @@ app.post('/register_en', ifLoggedin,
         // password encryption (using bcryptjs)
         bcrypt.hash(id_pass, 12).then((hash_pass) => {
             // INSERTING USER INTO DATABASE
-            locate.execute("INSERT INTO `users`(`name`,`email`,`password`) VALUES(?,?,?)",[id_name,id_email, id_pass])
+            locate.execute("INSERT INTO `users`(`name`,`email`,`password`) VALUES(?,?,?)",[id_name,id_email, hash_pass])
             .then(result => {
                 res.render('login_en');
             }).catch(err => {
@@ -99,9 +99,9 @@ app.post('/register_en', ifLoggedin,
     }
 });
 
-// app.get("/",(req,res)=>{
-//     res.render('home_en')
-// })
+  app.get("/home_en",(req,res)=>{
+      res.render('home_en')
+  })
 
 app.get("/advice_en",(req,res)=>{
     res.render('advice_en')
@@ -179,35 +179,34 @@ app.listen(port,()=>{
 
 
 
-app.post('/', ifLoggedin, [
-    body('email').custom((value) => {
+app.post('/login_en', ifLoggedin, [
+    body('id_email').custom((value) => {
         return locate.execute('SELECT email FROM users WHERE email=?', [value])
         .then(([rows]) => {
             if(rows.length == 1){
                 return true;
-
             }
             return Promise.reject('Invalid Email Address!');
 
         });
     }),
-    body('pass','Password is empty!').trim().not().isEmpty(),
+    body('id_pass','Password is empty!').trim().not().isEmpty(),
 ], (req, res) => {
     const validation_result = validationResult(req);
-    const {pass, email} = req.body;
+    const {id_pass, id_email} = req.body;
     if(validation_result.isEmpty()){
 
-        locate.execute("SELECT * FROM users WHERE email=?",[email])
+        locate.execute("SELECT * FROM users WHERE email=?",[id_email])
         .then(([rows]) => {
-            bcrypt.compare(pass, rows[0].password).then(compare_result => {
+            bcrypt.compare(id_pass, rows[0].password).then(compare_result => {
                 if(compare_result === true){
                     req.session.isLoggedIn = true;
                     req.session.userID = rows[0].id;
 
-                    res.redirect('/');
+                    res.redirect('/home_en');
                 }
                 else{
-                    res.render('Login',{
+                    res.render('login_en',{
                         login_errors:['Invalid Password!']
                     });
                 }
@@ -234,7 +233,7 @@ app.post('/', ifLoggedin, [
 // END OF LOGIN PAGE
 
 // LOGOUT
-app.get('/logout',(req,res)=>{
+app.get('/logout_en',(req,res)=>{
     //session destroy
     req.session = null;
     res.redirect('/');

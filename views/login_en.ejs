@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="login_en.css">
+    <link rel="stylesheet" href="register_en.css">
 </head>
 <body>
     <header>
@@ -43,19 +43,28 @@
         <a href="/"><img src="home2.png" alt="Play" style="width: 80%;"></a>
     </div>
 
+    <h1>REGISTER</h1>
     <div class="register">
-        <form action="/register_en" method="POST">
-            <input name="name" class="inside" type="text" placeholder="Name" value=" <%= (locals.old_data) ? old_data.name : ''; %>" required>
-            <input name="email" class="inside" type="text" placeholder="Email" value=" <%= (locals.old_data) ? old_data.email : ''; %>" required>
-            <input name="pass" class="inside" type="password" placeholder="Password" required>
-            <% if (locals.register_error) { 
-                register_error.forEach(function(error_msg){ %>
+        <form action="/login_en" method="POST">
+            <div class="email">
+                <label for="">EMAIL : </label>
+                <input name="id_email" id="_email" class="inside" type="text" placeholder="input your Email" rnodeequired>
+            </div>
+            <div class="password">
+                <label for="">PASSWORD : </label>
+                <input name="id_pass" id="_pass" class="inside" type="password" placeholder="input your Password" required>
+            </div>
+            <% if (locals.login_errors) { 
+                login_errors.forEach(function(error_msg){ %>
                 <div class="error"><%= error_msg %></div>
             <% });
             } %>
             <button type="submit" class="button">ENTER</button>
+            <br>
         </form>
     </div>
+
+
 
     <div class="nav2">
         <ul>

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url("background2.jpg");
+    background-image: url("background3.jpg");
     font-family: 'Fredoka One', cursive;
 }
 
@@ -119,7 +119,33 @@ body {
 }
 
 .nav2{
-    position: absolute;
     width: 100%;
     bottom: 0;
+}
+
+.Detail{
+    text-align: center; 
+    color: rgb(255, 255, 255);
+    margin: 100px;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-weight: normal; 
+    font-size: 50px; 
+    height: 60px; 
+    margin-top: 150px;
+    border-style: solid;
+    background-color: antiquewhite;
+}
+
+.FB{
+    margin-top: 50px;
+    margin-left: 23%;
+}
+
+.IG{
+    margin-top: 50px;
+    margin-left: 23%;
 }

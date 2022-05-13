@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url("background2.jpg");
+    background-image: url("background3.jpg");
     font-family: 'Itim', cursive;
 }
 
@@ -128,7 +128,7 @@ h1{
     text-align: center;
     border-style: solid;
     background-color: rgba(255, 242, 246, 0.287);
-    color: rgb(255, 159, 191);
+    color: rgb(255, 255, 255);
 }
 
 .howtoplay {

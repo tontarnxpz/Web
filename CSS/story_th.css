@@ -5,12 +5,22 @@ body {
     font-family: 'Itim', cursive;
 }
 
+.nav{
+    position: fixed;
+    width: 100%;
+    top : 0;
+}
+
 .nav ul{
     list-style: none;
     background-image: url("background.jpg");
     text-align: center;
     padding: 0;
     margin: 0;
+}
+
+.nav ul li:hover{
+    background-color: rgb(146, 146, 250);
 }
 
 .nav li{
@@ -27,10 +37,6 @@ body {
     padding-left: 12px;
     border-bottom: 1px solid #888;
     transition: .3s;
-}
-
-.nav a:hover{
-    background-color: rgb(146, 146, 250);
 }
 
 .nav li li{
@@ -77,21 +83,9 @@ body {
     }
 }
 
-.nav {
-    position: fixed;
-    top: 0 ;
+.nav2 {
+    bottom: 0 ;
     width: 100%;
-}
-
-.homebutton{
-    margin-left: 97%;
-    margin-top: 5%;
-    position: fixed;
-    top: 0 ;
-}
-
-.homebutton:hover{
-    transform: scale(1.05);
 }
 
 .nav2 ul{
@@ -118,8 +112,21 @@ body {
     border-bottom: 1px solid #888;
 }
 
-.nav2{
-    position: absolute;
-    width: 100%;
-    bottom: 0;
+.homebutton{
+    margin-left: 95%;
+    width: 5%;
+    display: inline-block;
+    line-height: 60px;
+}
+
+.homebutton:hover{
+    transform: scale(1.05);
+}
+
+h1{
+    font-size: 200px;
+    background-image: url("background.jpg");
+    text-align: center;
+    border-style: solid;
+    color: rgb(251, 202, 110);
 }

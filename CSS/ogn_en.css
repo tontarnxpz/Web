@@ -176,6 +176,7 @@ button{
     font-family: 'Fredoka One', cursive;
     cursor: pointer;
     width: 100px;
+    
 }
 
 button:hover{
@@ -224,6 +225,7 @@ button:hover{
 
 .ogn_out2{
     text-align: center;
+    
 }
 
 .modal3 {

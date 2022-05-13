@@ -137,6 +137,30 @@ body {
 h1{
     margin-top: 140px;
     text-align: center;
+    text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  line-height: 0.70em;
+  outline: none;
+  animation: animate 5s linear infinite;
+
+}
+@keyframes animate
+{
+0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+{
+  color: 0e3742;
+  box-shadow: none;
+}
+18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,92.1%,100%
+{
+  color: #fff;
+  text-shadow: 0 0 10px #03bcf4,
+  0 0 20px #03bcf4;
+  
+ 
+  
+
 }
 
 h2{
@@ -145,4 +169,6 @@ h2{
 
 h3{
     font-size: 15px;
+}
+
 }

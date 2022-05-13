@@ -44,6 +44,117 @@
         <a href="home_th"><img src="home2.png" alt="Play" style="width: 80%;"></a>
     </div>
 
+    <div class="ogn_out">
+        <div class="ogn">
+            <h1>ผู้จัดทำ</h1>
+            <button id="myBtn">เปิด</button>
+            <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>อนาวิน มโนศิลปกร 1630901369</p>
+                <p>รินรดี ผลละมุด 1630900981</p>
+                <p>ฐิตาวรรณ ธนาสัย 1630903472</p>
+                <p>รชานนท์ โพธิ์อยู่ 1630901211</p>
+            </div>
+            </div>
+            
+            <script>
+            var modal = document.getElementById("myModal");
+
+            var btn = document.getElementById("myBtn");
+
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+            modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            }
+            </script>
+        </div>
+    </div>
+
+    <div class="ogn_out2">
+        <div class="ogn2">
+            <h1>วิชาและเซคชั่น</h1>
+            <button id="myBtn2">เปิด</button>
+            <div id="myModal2" class="modal2">
+            <div class="modal-content2">
+                <span class="close2">&times;</span>
+                <p>วิชา : CE223</p>
+                <p>เซคชั่น : 236A</p>
+            </div>
+            </div>
+            
+            <script>
+
+            var modal2 = document.getElementById("myModal2");
+
+            var btn2 = document.getElementById("myBtn2");
+
+            var span2 = document.getElementsByClassName("close2")[0];
+
+            btn2.onclick = function() {
+            modal2.style.display = "block";
+            }
+
+            span2.onclick = function() {
+            modal2.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            }
+            </script>
+        </div>
+    </div>
+
+    <div class="ogn_out3">
+        <div class="ogn3">
+            <h1>อาจารย์ผู้สอน</h1>
+            <button id="myBtn3">เปิด</button>
+            <div id="myModal3" class="modal3">
+            <div class="modal-content3">
+                <span class="close3">&times;</span>
+                <p>อาจารย์ทศพล บ้านคลองสี่</p>
+            </div>
+            </div>
+            
+            <script>
+
+            var modal3 = document.getElementById("myModal3");
+
+            var btn3 = document.getElementById("myBtn3");
+
+            var span3 = document.getElementsByClassName("close3")[0];
+
+            btn3.onclick = function() {
+            modal3.style.display = "block";
+            }
+
+            span3.onclick = function() {
+            modal3.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+            if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+            }
+            </script>
+        </div>
+    </div>
+
     <div class="nav2">
         <ul>
             <li><a href="tos_th">เงื่อนไขการใช้บริการ</a>

@@ -46,48 +46,109 @@
 
     <div class="ogn_out">
         <div class="ogn">
-            <h1>ORGANIZER</h1>
-            <hr>
-            <h2>Modal Example</h2>
-
-            <!-- Trigger/Open The Modal -->
+            <h1>ORGANIZE</h1>
             <button id="myBtn">OPEN</button>
-
-            <!-- The Modal -->
             <div id="myModal" class="modal">
-
-            <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Some text in the Modal..</p>
+                <p>Anawin Manosilapakorn 1630901369</p>
+                <p>Rinradee Phollamud 1630900981</p>
+                <p>Thitawan Thanasai 1630903472</p>
+                <p>Rachanon Phoyu 1630901211</p>
             </div>
-
             </div>
-
+            
             <script>
-            // Get the modal
             var modal = document.getElementById("myModal");
 
-            // Get the button that opens the modal
             var btn = document.getElementById("myBtn");
 
-            // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
 
-            // When the user clicks the button, open the modal 
             btn.onclick = function() {
             modal.style.display = "block";
             }
 
-            // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
             modal.style.display = "none";
             }
 
-            // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+            }
+            </script>
+        </div>
+    </div>
+
+    <div class="ogn_out2">
+        <div class="ogn2">
+            <h1>SUBJECT + SECTION</h1>
+            <button id="myBtn2">OPEN</button>
+            <div id="myModal2" class="modal2">
+            <div class="modal-content2">
+                <span class="close2">&times;</span>
+                <p>SUBJECT : CE223</p>
+                <p>SECTION : 236A</p>
+            </div>
+            </div>
+            
+            <script>
+
+            var modal2 = document.getElementById("myModal2");
+
+            var btn2 = document.getElementById("myBtn2");
+
+            var span2 = document.getElementsByClassName("close2")[0];
+
+            btn2.onclick = function() {
+            modal2.style.display = "block";
+            }
+
+            span2.onclick = function() {
+            modal2.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            }
+            </script>
+        </div>
+    </div>
+
+    <div class="ogn_out3">
+        <div class="ogn3">
+            <h1>PROFESSOR</h1>
+            <button id="myBtn3">OPEN</button>
+            <div id="myModal3" class="modal3">
+            <div class="modal-content3">
+                <span class="close3">&times;</span>
+                <p>Todsapon Banklongsi</p>
+            </div>
+            </div>
+            
+            <script>
+
+            var modal3 = document.getElementById("myModal3");
+
+            var btn3 = document.getElementById("myBtn3");
+
+            var span3 = document.getElementsByClassName("close3")[0];
+
+            btn3.onclick = function() {
+            modal3.style.display = "block";
+            }
+
+            span3.onclick = function() {
+            modal3.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+            if (event.target == modal3) {
+                modal3.style.display = "none";
             }
             }
             </script>

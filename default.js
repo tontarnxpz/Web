@@ -25,6 +25,20 @@ const locate = mysql.createPool({
     database : 'login_system' // MYSQL DB NAME
 }).promise();
 
+const ifNotLoggedin2 = (req,res,next) => {
+    if(!req.session.isLoggedIn2){
+        return res.render('login_th');
+    }
+    next();
+}
+
+const ifLoggedin2 = (req,res,next) => {
+    if(req.session.isLoggedIn2){
+        return res.redirect('/home_th');
+    }
+    next();
+}
+
 const ifNotLoggedin = (req,res,next) => {
     if(!req.session.isLoggedIn){
         return res.render('login_en');
@@ -39,6 +53,10 @@ const ifLoggedin = (req,res,next) => {
     next();
 }
 
+
+
+
+//register eng
 app.get('/',ifNotLoggedin,(req,res,next) => {
     locate.execute("SELECT `name` FROM `users` WHERE `id` = ?",[req.session.userID])
     .then(([rows]) => {
@@ -135,9 +153,9 @@ app.get("/ogn_en",(req,res)=>{
     res.render('ogn_en')
 })
 
-app.get("/home_th",(req,res)=>{
-    res.render('home_th')
-})
+// app.get("/home_th",(req,res)=>{
+//     res.render('home_th')
+// })
 
 app.get("/advice_th",(req,res)=>{
     res.render('advice_th')
@@ -240,11 +258,132 @@ app.get('/logout_en',(req,res)=>{
 });
 // END OF LOGOUT
 
+
+//register thai
+app.get('/home_th',ifNotLoggedin2,(req,res,next) => {
+    locate.execute("SELECT `name` FROM `users` WHERE `id` = ?",[req.session.userID])
+    .then(([rows]) => {
+        res.render('home_th',{
+            name:rows[0].name
+        })
+    })
+})
+
+
+app.post('/register_th', ifLoggedin2, 
+// post data validation(using express-validator)
+[
+    body('id_email','Invalid email address!').isEmail().custom((value) => {
+        return locate.execute('SELECT `email` FROM `users` WHERE `email`=?', [value])
+        .then(([rows]) => {
+            if(rows.length > 0){
+                return Promise.reject('อีเมลล์นี้มีผู้ใช้แล้ว!');
+            }
+            return true;
+        });
+    }),
+    body('id_name','ชื่อผู้ใช้นี้มีผู้ใช้แล้ว!').trim().not().isEmpty(),
+    body('id_pass','รหัสผ่านจะต้องมีจำนวนอย่างน้อย 6 ตัว').trim().isLength({ min: 6 }),
+],// end of post data validation
+(req,res,next) => {
+
+    const validation_result = validationResult(req);
+    const {id_name, id_pass, id_email} = req.body;
+    // IF validation_result HAS NO ERROR
+    if(validation_result.isEmpty()){
+        // password encryption (using bcryptjs)
+        bcrypt.hash(id_pass, 12).then((hash_pass) => {
+            // INSERTING USER INTO DATABASE
+            locate.execute("INSERT INTO `users`(`name`,`email`,`password`) VALUES(?,?,?)",[id_name,id_email, hash_pass])
+            .then(result => {
+                res.render('login_th');
+            }).catch(err => {
+                // THROW INSERTING USER ERROR'S
+                if (err) throw err;
+            });
+        })
+        .catch(err => {
+            // THROW HASING ERROR'S
+            if (err) throw err;
+        })
+    }
+    else{
+        // COLLECT ALL THE VALIDATION ERRORS
+        let allErrors = validation_result.errors.map((error) => {
+            return error.msg;
+        });
+        // REDERING login-register PAGE WITH VALIDATION ERRORS
+        res.render('register_th',{
+            register_error:allErrors,
+            old_data:req.body
+        });
+    }
+});
+
+//login thai
+app.post('/login_th', ifLoggedin2, [
+    body('id_email').custom((value) => {
+        return locate.execute('SELECT email FROM users WHERE email=?', [value])
+        .then(([rows]) => {
+            if(rows.length == 1){
+                return true;
+            }
+            return Promise.reject('อีเมลล์ผิด!');
+
+        });
+    }),
+    body('id_pass','Password is empty!').trim().not().isEmpty(),
+], (req, res) => {
+    const validation_result = validationResult(req);
+    const {id_pass, id_email} = req.body;
+    if(validation_result.isEmpty()){
+
+        locate.execute("SELECT * FROM users WHERE email=?",[id_email])
+        .then(([rows]) => {
+            bcrypt.compare(id_pass, rows[0].password).then(compare_result => {
+                if(compare_result === true){
+                    req.session.isLoggedIn2 = true;
+                    req.session.userID = rows[0].id;
+
+                    res.redirect('/home_th');
+                }
+                else{
+                    res.render('login_th',{
+                        login_errors:['รหัสผ่านผิด!']
+                    });
+                }
+            })
+            .catch(err => {
+                if (err) throw err;
+            });
+
+
+        }).catch(err => {
+            if (err) throw err;
+        });
+    }
+    else{
+        let allErrors = validation_result.errors.map((error) => {
+            return error.msg;
+        });
+        // REDERING login-register PAGE WITH LOGIN VALIDATION ERRORS
+        res.render('login_th',{
+            login_errors:allErrors
+        });
+    }
+});
+// END OF LOGIN PAGE
+
+// LOGOUT
+app.get('/logout_th',(req,res)=>{
+    //session destroy
+    req.session = null;
+    res.redirect('/home_th');
+});
+
 app.use('/', (req,res) => {
     res.status(404).send('<h1>404 Page Not Found!</h1>');
 });
-
-
 
 
 

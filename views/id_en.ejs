@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="home_en.css">
-
+    <link rel="stylesheet" href="id_en.css">
+    
 </head>
 <body>
     <header>
@@ -26,30 +26,43 @@
                 </li>
                 <li class="id_out"><a href="#">MEMBER</a>
                     <ul>
-                        <li class="id_in"><a href="id_en">ID</a></li>
+                        <li class="id_in"><a href="id_en">Member List</a></li>
                         <li class="id_in"><a href="logout_en">LOGOUT</a></li>
                     </ul>
                 </li>
                 <li class="lang_out"><a href="#">LANGUAGE</a>
                     <ul>
-                        <li class="lang_in"><a href="/">ENGLISH</a></li>
-                        <li class="lang_in"><a href="home_th">THAI</a></li>
+                        <li class="lang_in"><a href="id_en">ENGLISH</a></li>
+                        <li class="lang_in"><a href="id_th">THAI</a></li>
                     </ul>
                 </li>
             </ul>
+            <div class="homebutton">
+                <a href="/"><img src="home2.png" alt="Play" style="width: 80%;"></a>
+            </div>
         </div>
     </header>
 
-    <div class="homebutton">
-        <a href="/"><img src="home2.png" alt="Play" style="width: 80%;"></a>
-    </div>
 
-    <div class="logo">
-        <img src="logo.gif" alt="LOGO" style="width: 60%;">
+
+
+    <h1>MEMBER LIST</h1>
+
+    <div class="show_out">
+        <div class="show">
+            <table id="table">
+                <tr>
+                    <th>THANK YOU</th>
+                </tr>
+                <% users.forEach(function(item) { %>
+                <tr>
+                    <td>K. <%= item.name %></td>
+                </tr>
+                <% }) %>
+            </table>
+        </div>
     </div>
-    <div class="play">
-        <a href="#"><img src="playbutton.png" alt="Play" style="width: 80%;"></a>
-    </div>
+    <br>
 
     <div class="nav2">
         <ul>

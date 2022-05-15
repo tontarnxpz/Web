@@ -3,10 +3,13 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
+const mysql2 = require('mysql');
 const { body, validationResult } = require('express-validator');
 
 const app = express()
 const port = 20180
+
+var obj = {}
 
 app.set('view engine','ejs')
 app.use(express.static('CSS'))
@@ -24,6 +27,13 @@ const locate = mysql.createPool({
     password : '', // MYSQL PASSWORD
     database : 'login_system' // MYSQL DB NAME
 }).promise();
+
+const locate2 = mysql2.createPool({
+    host     : 'localhost', // MYSQL HOST NAME
+    user     : 'root', // MYSQL USERNAME
+    password : '', // MYSQL PASSWORD
+    database : 'login_system' // MYSQL DB NAME
+})
 
 const ifNotLoggedin2 = (req,res,next) => {
     if(!req.session.isLoggedIn2){
@@ -192,9 +202,6 @@ app.get("/ogn_th",(req,res)=>{
 app.listen(port,()=>{
     console.log("Server is on port: ",port)
 })
-
-
-
 
 
 app.post('/login_en', ifLoggedin, [
@@ -381,14 +388,42 @@ app.get('/logout_th',(req,res)=>{
     res.redirect('/home_th');
 });
 
+app.get('/id_en',(req,res)=>{
+    locate2.getConnection((err,connection)=>{
+        if(err) throw err
+        console.log("connected id : ",connection.threadId)
+        connection.query('SELECT * FROM users',(err,rows)=>{
+            connection.release();
+            if(err){
+                console.log(err)
+            }else{
+                obj = { Error : err , users : rows}
+                res.render('id_en',obj)
+            }
+        })
+    })
+})
+
+app.get('/id_th',(req,res)=>{
+    locate2.getConnection((err,connection)=>{
+        if(err) throw err
+        console.log("connected id : ",connection.threadId)
+        connection.query('SELECT * FROM users',(err,rows)=>{
+            connection.release();
+            if(err){
+                console.log(err)
+            }else{
+                obj = { Error : err , users : rows}
+                res.render('id_th',obj)
+            }
+        })
+    })
+})
+
+
 app.use('/', (req,res) => {
     res.status(404).send('<h1>404 Page Not Found!</h1>');
 });
-
-
-
-
-
 
 
 

@@ -123,12 +123,6 @@ body {
     bottom: 0;
 }
 
-.Detail{
-    text-align: center; 
-    color: rgb(255, 255, 255);
-    margin: 100px;
-}
-
 h2{
     text-align: center;
     font-family: 'Fredoka One', cursive;
@@ -145,7 +139,3 @@ h2{
     margin-left: 23%;
 }
 
-.IG{
-    margin-top: 50px;
-    margin-left: 23%;
-}

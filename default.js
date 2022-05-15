@@ -22,17 +22,17 @@ app.use(cookieSession({
 }))
 
 const locate = mysql.createPool({
-    host     : 'localhost', // MYSQL HOST NAME
-    user     : 'root', // MYSQL USERNAME
-    password : '', // MYSQL PASSWORD
-    database : 'login_system' // MYSQL DB NAME
+    host     : 'localhost', 
+    user     : 'root', 
+    password : '', 
+    database : 'login_system' 
 }).promise();
 
 const locate2 = mysql2.createPool({
-    host     : 'localhost', // MYSQL HOST NAME
-    user     : 'root', // MYSQL USERNAME
-    password : '', // MYSQL PASSWORD
-    database : 'login_system' // MYSQL DB NAME
+    host     : 'localhost', 
+    user     : 'root', 
+    password : '', 
+    database : 'login_system' 
 })
 
 const ifNotLoggedin2 = (req,res,next) => {
@@ -63,9 +63,6 @@ const ifLoggedin = (req,res,next) => {
     next();
 }
 
-
-
-
 //register eng
 app.get('/',ifNotLoggedin,(req,res,next) => {
     locate.execute("SELECT `name` FROM `users` WHERE `id` = ?",[req.session.userID])
@@ -76,9 +73,7 @@ app.get('/',ifNotLoggedin,(req,res,next) => {
     })
 })
 
-
 app.post('/register_en', ifLoggedin, 
-// post data validation(using express-validator)
 [
     body('id_email','Invalid email address!').isEmail().custom((value) => {
         return locate.execute('SELECT `email` FROM `users` WHERE `email`=?', [value])
@@ -91,35 +86,28 @@ app.post('/register_en', ifLoggedin,
     }),
     body('id_name','Username is Empty!').trim().not().isEmpty(),
     body('id_pass','The password must be of minimum length 6 characters').trim().isLength({ min: 6 }),
-],// end of post data validation
+],
 (req,res,next) => {
 
     const validation_result = validationResult(req);
     const {id_name, id_pass, id_email} = req.body;
-    // IF validation_result HAS NO ERROR
     if(validation_result.isEmpty()){
-        // password encryption (using bcryptjs)
         bcrypt.hash(id_pass, 12).then((hash_pass) => {
-            // INSERTING USER INTO DATABASE
             locate.execute("INSERT INTO `users`(`name`,`email`,`password`) VALUES(?,?,?)",[id_name,id_email, hash_pass])
             .then(result => {
                 res.render('login_en');
             }).catch(err => {
-                // THROW INSERTING USER ERROR'S
                 if (err) throw err;
             });
         })
         .catch(err => {
-            // THROW HASING ERROR'S
             if (err) throw err;
         })
     }
     else{
-        // COLLECT ALL THE VALIDATION ERRORS
         let allErrors = validation_result.errors.map((error) => {
             return error.msg;
         });
-        // REDERING login-register PAGE WITH VALIDATION ERRORS
         res.render('register_en',{
             register_error:allErrors,
             old_data:req.body
@@ -249,13 +237,11 @@ app.post('/login_en', ifLoggedin, [
         let allErrors = validation_result.errors.map((error) => {
             return error.msg;
         });
-        // REDERING login-register PAGE WITH LOGIN VALIDATION ERRORS
         res.render('login_en',{
             login_errors:allErrors
         });
     }
 });
-// END OF LOGIN PAGE
 
 // LOGOUT
 app.get('/logout_en',(req,res)=>{
@@ -263,7 +249,6 @@ app.get('/logout_en',(req,res)=>{
     req.session = null;
     res.redirect('/');
 });
-// END OF LOGOUT
 
 
 //register thai
@@ -278,7 +263,6 @@ app.get('/home_th',ifNotLoggedin2,(req,res,next) => {
 
 
 app.post('/register_th', ifLoggedin2, 
-// post data validation(using express-validator)
 [
     body('id_email','Invalid email address!').isEmail().custom((value) => {
         return locate.execute('SELECT `email` FROM `users` WHERE `email`=?', [value])
@@ -291,35 +275,28 @@ app.post('/register_th', ifLoggedin2,
     }),
     body('id_name','ชื่อผู้ใช้นี้มีผู้ใช้แล้ว!').trim().not().isEmpty(),
     body('id_pass','รหัสผ่านจะต้องมีจำนวนอย่างน้อย 6 ตัว').trim().isLength({ min: 6 }),
-],// end of post data validation
+],
 (req,res,next) => {
 
     const validation_result = validationResult(req);
     const {id_name, id_pass, id_email} = req.body;
-    // IF validation_result HAS NO ERROR
     if(validation_result.isEmpty()){
-        // password encryption (using bcryptjs)
         bcrypt.hash(id_pass, 12).then((hash_pass) => {
-            // INSERTING USER INTO DATABASE
             locate.execute("INSERT INTO `users`(`name`,`email`,`password`) VALUES(?,?,?)",[id_name,id_email, hash_pass])
             .then(result => {
                 res.render('login_th');
             }).catch(err => {
-                // THROW INSERTING USER ERROR'S
                 if (err) throw err;
             });
         })
         .catch(err => {
-            // THROW HASING ERROR'S
             if (err) throw err;
         })
     }
     else{
-        // COLLECT ALL THE VALIDATION ERRORS
         let allErrors = validation_result.errors.map((error) => {
             return error.msg;
         });
-        // REDERING login-register PAGE WITH VALIDATION ERRORS
         res.render('register_th',{
             register_error:allErrors,
             old_data:req.body
@@ -373,17 +350,14 @@ app.post('/login_th', ifLoggedin2, [
         let allErrors = validation_result.errors.map((error) => {
             return error.msg;
         });
-        // REDERING login-register PAGE WITH LOGIN VALIDATION ERRORS
         res.render('login_th',{
             login_errors:allErrors
         });
     }
 });
-// END OF LOGIN PAGE
 
 // LOGOUT
 app.get('/logout_th',(req,res)=>{
-    //session destroy
     req.session = null;
     res.redirect('/home_th');
 });
@@ -413,13 +387,13 @@ app.get('/id_th',(req,res)=>{
             if(err){
                 console.log(err)
             }else{
+                
                 obj = { Error : err , users : rows}
                 res.render('id_th',obj)
             }
         })
     })
 })
-
 
 app.use('/', (req,res) => {
     res.status(404).send('<h1>404 Page Not Found!</h1>');

@@ -10,24 +10,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="news_en.css">
+    <!-- เรียกใช้ไฟล์ news_en.css เป็นการควบคุมการปรับแต่งหน้านี้ -->
 </head>
 <body>
     <header>
+        <!-- สร้าง class ชื่อ nav เพื่อควบคุมในส่วนของ task bar ด้านบน -->
         <div class="nav">
             <ul>
+                <!-- สร้าง class ชื่อ tp_out เพื่อควบคุมในส่วนของ MENU ที่จะมี pop out ออกมา -->
                 <li class="tp_out"><a href="#">MENU</a>
                     <ul>
+                        <!-- ส่วนของ pop out หน้า MENU จะมีอีก 4 ทางเลือกด้านล่าง เพื่อที่จะลิงค์ไปหน้าอื่นๆ -->
                         <li class="tp_in"><a href="news_en">NEWS</a></li>
                         <li class="tp_in"><a href="advice_en">ADVICE</a></li>
                         <li class="tp_in"><a href="story_en">STORY</a></li>
                         <li class="tp_in"><a href="support_en">SUPPORT</a></li>
                     </ul>
                 </li>
+                <!-- สร้าง class ชื่อ id_out เพื่อควบคุมในส่วนของ MEMBER ที่จะมี pop out ออกมา -->
                 <li class="id_out"><a href="#">MEMBER</a>
                     <ul>
+                        <!-- ส่วนของ pop out หน้า MEMBER จะมีอีก 2 ทางเลือกด้านล่าง เพื่อที่จะลิงค์ไปหน้าอื่นๆ -->
+                        <li class="id_in"><a href="id_en">ID</a></li>
                         <li class="id_in"><a href="logout_en">LOGOUT</a></li>
                     </ul>
                 </li>
+                <!-- สร้าง class ชื่อ lang_out เพื่อควบคุมในส่วนของ LANGUAGE ที่จะมี pop out ออกมา -->
+                <!-- ส่วนนี้เป็นส่วนที่จะควบคุมเรื่องการเปลี่ยนภาษา มีไทยกับอังกฤษ -->
                 <li class="lang_out"><a href="#">LANGUAGE</a>
                     <ul>
                         <li class="lang_in"><a href="news_en">ENGLISH</a></li>
@@ -38,54 +47,69 @@
             
         </div>
     </header>
+    <!-- class homebutton จะควบคุมปุ่ม home เมื่อกดไปจะกลับไปหน้า homepage -->
     <div class="homebutton">
         <a href="/"><img src="home2.png" alt="Play" style="width: 80%;"></a>
+        <!-- กำหนดความกว้างของรูป home ที่ 80% -->
     </div>
 
+    <!-- สร้างข้อความ -->
     <h1>NEWS UPDATE</h1>
 
+    <!-- กำหนด class ในส่วนนี้จะควบคุมการเปลี่ยนรูปสไลด์แสดงผลตามที่ผู้ใช้กด ทั้งซ้ายและขวา ตามเว็บ -->
     <div class="slideshow-container">
 
+        <!-- ควบคุมในส่วนของรูปแรก -->
         <div class="mySlides fade">
         <div class="numbertext">1 / 3</div>
+        <!-- import รูป -->
         <img src="slide2.png" style="width:100%">
         <div class="text">Open world</div>
         </div>
-    
+        
+        <!-- ควบคุมในส่วนของรูปสอง -->
         <div class="mySlides fade">
         <div class="numbertext">2 / 3</div>
+        <!-- import รูป -->
         <img src="slide1.png" style="width:100%">
         <div class="text">New items</div>
         </div>
-    
+        
+        <!-- ควบคุมในส่วนของรูปสาม -->
         <div class="mySlides fade">
         <div class="numbertext">3 / 3</div>
+        <!-- import รูป -->
         <img src="slide3.png" style="width:100%">
         <div class="text">3class</div>
         </div>
-    
+        
+        <!-- กด prev จะไปรูปก่อนหน้า กด next จะไปรูปต่อไปโดยจะใช้กับ javascript ด้านล่าง -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
     <br>
   
+    <!-- สร้างจุดเพื่อบอกตำแหน่งของรูปปัจจุบัน -->
   <div style="text-align:center">
     <span class="dot" onclick="currentSlide(1)"></span>
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
   </div>
+
+  <!-- ส่วนของ script ควบคุมในการเปลี่ยนรูปไปมา -->
   <script>
-    let slideIndex = 1;
+    let slideIndex = 1; //แสดงรูปที่ 1
     showSlides(slideIndex);
     
     function plusSlides(n) {
-      showSlides(slideIndex += n);
+      showSlides(slideIndex += n); //แสดงรูปต่อไป
     }
     
     function currentSlide(n) {
-      showSlides(slideIndex = n);
+      showSlides(slideIndex = n); //แสดงรูปปัจจุบัน
     }
     
+    //ฟังก์ชั่นโชว์สไลด์ เปลี่ยนไปมา
     function showSlides(n) {
       let i;
       let slides = document.getElementsByClassName("mySlides");
@@ -106,6 +130,7 @@
     <br>
     <br>
 
+    <!-- สร้าง class ชื่อ nav2 เพื่อควบคุมในส่วนของ task bar ด้านล่าง -->
     <div class="nav2">
         <ul>
             <li><a href="tos_en">Term of service</a>

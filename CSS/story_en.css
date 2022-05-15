@@ -130,3 +130,17 @@ h1{
     border-style: solid;
     color: rgb(251, 202, 110);
 }
+
+.story1{
+    display: flex;
+    align-items: center;
+}
+
+h2{
+    background-color: antiquewhite;
+}
+
+.msg1{
+    width: 1000px;
+    height: 800px;
+}
